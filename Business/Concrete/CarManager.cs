@@ -18,7 +18,7 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            if (car.DailyPrice > 0 )
+            if (car.DailyPrice > 0)
             {
 
                 _carDal.Add(car);
@@ -27,7 +27,7 @@ namespace Business.Concrete
             {
                 Console.WriteLine("Kayıt başarısız. Günlük ücret 0'dan büyük olmalıdır.");
             }
-            
+
         }
 
         public void Delete(Car car)
