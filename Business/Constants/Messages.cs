@@ -12,5 +12,6 @@ namespace Business.Constants
         public static string Listed = "Listelendi.";
         public static string Updated = "Güncelleme işlemi gerçekleştirildi.";
         public static string CarPriceInvalid = "Kayıt başarısız. Günlük ücret 0'dan büyük olmalıdır.";
+        public static string RentalAddFailed = "Kayıt başarısız. Araç teslimi henüz gerçekleşmemiştir.";
     }
 }

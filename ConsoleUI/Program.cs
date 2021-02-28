@@ -13,9 +13,60 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EFCarDal());
             //GetAllCarTest(carManager);
-            CarTests(carManager);
+            //CarTests(carManager);
             //ColorTests();
             //BrandTests();
+            UserTests();
+            CustomerTests();
+            RentalTests();
+        }
+
+        private static void RentalTests()
+        {
+            RentalManager rentalManager = new RentalManager(new EFRentalDal());
+            Rental rental1 = new Rental { CarId = 2, CustomerId = 1, RentDate = DateTime.Now };
+            var result = rentalManager.Add(rental1);
+            Console.WriteLine("-----------------Rentals------------------------");
+            if (!result.Success)
+                Console.WriteLine(result.Message);
+
+            var rentalResult = rentalManager.GetRentalDetails();
+
+            if (rentalResult.Success)
+            {
+                foreach (var rental in rentalResult.Data)
+                {
+                    Console.WriteLine(rental.CarName + " - " + rental.CustomerName + " - " + rental.RentDate + " - " + rental.ReturnDate);
+                }
+            }
+        }
+
+        private static void CustomerTests()
+        {
+            CustomerManager customerManager = new CustomerManager(new EFCustomerDal());
+            var customerResult = customerManager.GetAll();
+            Console.WriteLine("-----------------Customers------------------------");
+            if (customerResult.Success)
+            {
+                foreach (var customer in customerResult.Data)
+                {
+                    Console.WriteLine(customer.UserId + " " + customer.CompanyName);
+                }
+            }
+        }
+
+        private static void UserTests()
+        {
+            UserManager userManager = new UserManager(new EFUserDal());
+            var userResult = userManager.GetAll();
+            Console.WriteLine("-----------------Users------------------------");
+            if (userResult.Success)
+            {
+                foreach (var user in userResult.Data)
+                {
+                    Console.WriteLine(user.FirstName + " " + user.LastName);
+                }
+            }
         }
 
         private static void CarTests(CarManager carManager)
